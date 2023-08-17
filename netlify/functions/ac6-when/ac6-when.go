@@ -19,6 +19,8 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 
 	err := json.Unmarshal([]byte(body), update)
 
+	println(err)
+
 	if err != nil {
 		return &events.APIGatewayProxyResponse{
 			StatusCode: 400,
