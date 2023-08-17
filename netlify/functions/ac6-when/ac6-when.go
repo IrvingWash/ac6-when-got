@@ -17,9 +17,9 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 
 	var update telegramapi.TelegramUpdate
 
-	err := json.Unmarshal([]byte(body), update)
+	err := json.Unmarshal([]byte(body), &update)
 
-	println(err)
+	fmt.Println(err)
 
 	if err != nil {
 		return &events.APIGatewayProxyResponse{
