@@ -5,5 +5,8 @@ import (
 )
 
 func main() {
-	telegramapi.GetMe()
+	telegramapi.SendMessage(&telegramapi.TelegramSendMessagePayload{
+		ChatID: 1234,
+		Text:   "Hello",
+	})
 }

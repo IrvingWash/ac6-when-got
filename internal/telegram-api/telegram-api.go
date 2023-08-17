@@ -10,10 +10,8 @@ import (
 var reqEnv = newRequestsEnvironment(makeBaseUrl())
 var transp = newTransport(&reqEnv)
 
-func GetMe() {
-	me := transp.getMe()
-
-	fmt.Println(me)
+func SendMessage(payload *TelegramSendMessagePayload) TelegramMessage {
+	return transp.sendMessage(payload)
 }
 
 func makeBaseUrl() string {

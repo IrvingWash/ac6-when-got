@@ -1,6 +1,8 @@
 package telegramapi
 
 import (
+	"bytes"
+	"encoding/json"
 	"io"
 	"log"
 	"net/http"
@@ -16,8 +18,14 @@ func newTransport(reqEnv *requestsEnvironment) transport {
 	}
 }
 
-func (t *transport) getMe() string {
-	resp, err := http.Get(t.reqEnv.getMeRequestMetainfo().url)
+func (t *transport) sendMessage(payload *TelegramSendMessagePayload) TelegramMessage {
+	payloadBytes, err := json.Marshal(payload)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	resp, err := http.Post(t.reqEnv.sendMessageURL(), "application/json", bytes.NewBuffer(payloadBytes))
 
 	if err != nil {
 		log.Fatal(err)
@@ -29,5 +37,9 @@ func (t *transport) getMe() string {
 		log.Fatal(err)
 	}
 
-	return string(body)
+	var message TelegramMessage
+
+	json.Unmarshal(body, message)
+
+	return message
 }

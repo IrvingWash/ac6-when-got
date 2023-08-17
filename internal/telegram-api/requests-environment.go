@@ -5,10 +5,6 @@ import (
 	"net/url"
 )
 
-type requestMetainfo struct {
-	url string
-}
-
 type requestsEnvironment struct {
 	baseUrl string
 }
@@ -19,14 +15,12 @@ func newRequestsEnvironment(baseUrl string) requestsEnvironment {
 	}
 }
 
-func (r *requestsEnvironment) getMeRequestMetainfo() requestMetainfo {
-	getMeUrl, err := url.JoinPath(r.baseUrl, "getMe")
+func (r *requestsEnvironment) sendMessageURL() string {
+	sendMessageUrl, err := url.JoinPath(r.baseUrl, "sendMessage")
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	return requestMetainfo{
-		url: getMeUrl,
-	}
+	return sendMessageUrl
 }
