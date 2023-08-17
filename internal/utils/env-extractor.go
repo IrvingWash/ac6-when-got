@@ -2,10 +2,17 @@ package utils
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
 func ExtractEnvironmentVariable(name string) (string, error) {
+	osVariable := os.Getenv(name)
+
+	if osVariable != "" {
+		return osVariable, nil
+	}
+
 	variables := ReadFileToArray(".env")
 
 	var neededVariable string
