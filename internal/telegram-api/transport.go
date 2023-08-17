@@ -7,17 +7,17 @@ import (
 )
 
 type transport struct {
-	requestsEnvironment *requestsEnvironment
+	reqEnv *requestsEnvironment
 }
 
-func newTransport(re *requestsEnvironment) transport {
+func newTransport(reqEnv *requestsEnvironment) transport {
 	return transport{
-		requestsEnvironment: re,
+		reqEnv: reqEnv,
 	}
 }
 
 func (t *transport) getMe() string {
-	resp, err := http.Get(t.requestsEnvironment.getMe().url)
+	resp, err := http.Get(t.reqEnv.getMeRequestMetainfo().url)
 
 	if err != nil {
 		log.Fatal(err)

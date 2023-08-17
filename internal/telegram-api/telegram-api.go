@@ -7,11 +7,11 @@ import (
 	"github.com/IrvingWash/ac6-when-got/internal/utils"
 )
 
-var re = newRequestEnvironment(makeBaseUrl())
-var t = newTransport(&re)
+var reqEnv = newRequestsEnvironment(makeBaseUrl())
+var transp = newTransport(&reqEnv)
 
 func GetMe() {
-	me := t.getMe()
+	me := transp.getMe()
 
 	fmt.Println(me)
 }

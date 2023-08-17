@@ -13,13 +13,13 @@ type requestsEnvironment struct {
 	baseUrl string
 }
 
-func newRequestEnvironment(baseUrl string) requestsEnvironment {
+func newRequestsEnvironment(baseUrl string) requestsEnvironment {
 	return requestsEnvironment{
 		baseUrl: baseUrl,
 	}
 }
 
-func (r *requestsEnvironment) getMe() requestMetainfo {
+func (r *requestsEnvironment) getMeRequestMetainfo() requestMetainfo {
 	getMeUrl, err := url.JoinPath(r.baseUrl, "getMe")
 
 	if err != nil {
