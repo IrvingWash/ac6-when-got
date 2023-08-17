@@ -6,6 +6,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 
+	ac6countdown "github.com/IrvingWash/ac6-when-got/internal/ac6-count-down"
 	telegramapi "github.com/IrvingWash/ac6-when-got/internal/telegram-api"
 )
 
@@ -23,9 +24,11 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 		}, nil
 	}
 
+	remainingTime := ac6countdown.GetRemainingTime()
+
 	telegramapi.SendMessage(&telegramapi.TelegramSendMessagePayload{
 		ChatID: update.Message.Chat.ID,
-		Text:   "Hello, World!",
+		Text:   remainingTime,
 	})
 
 	return &events.APIGatewayProxyResponse{
