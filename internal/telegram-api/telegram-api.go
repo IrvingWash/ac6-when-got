@@ -11,7 +11,6 @@ var reqEnv = newRequestsEnvironment(makeBaseUrl())
 var transp = newTransport(&reqEnv)
 
 func SendMessage(payload *TelegramSendMessagePayload) TelegramMessage {
-	fmt.Println(payload)
 	return transp.sendMessage(payload)
 }
 

@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -13,13 +12,9 @@ import (
 func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	body := request.Body
 
-	fmt.Println(body)
-
 	var update telegramapi.TelegramUpdate
 
 	err := json.Unmarshal([]byte(body), &update)
-
-	fmt.Println(err)
 
 	if err != nil {
 		return &events.APIGatewayProxyResponse{
