@@ -39,7 +39,11 @@ func (t *transport) sendMessage(payload *TelegramSendMessagePayload) TelegramMes
 
 	var message TelegramMessage
 
-	json.Unmarshal(body, message)
+	err = json.Unmarshal(body, message)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	return message
 }
