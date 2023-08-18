@@ -20,6 +20,8 @@ func ExtractEnvironmentVariable(name string) (string, error) {
 	for _, v := range variables {
 		if strings.HasPrefix(v, name) {
 			neededVariable = strings.Split(v, "=")[1]
+
+			break
 		}
 	}
 

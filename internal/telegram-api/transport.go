@@ -18,7 +18,7 @@ func newTransport(reqEnv *requestsEnvironment) transport {
 	}
 }
 
-func (t *transport) sendMessage(payload *TelegramSendMessagePayload) TelegramMessage {
+func (t *transport) sendMessage(payload *SendMessagePayload) Message {
 	payloadBytes, err := json.Marshal(payload)
 
 	if err != nil {
@@ -37,7 +37,7 @@ func (t *transport) sendMessage(payload *TelegramSendMessagePayload) TelegramMes
 		log.Fatal(err)
 	}
 
-	var message TelegramMessage
+	var message Message
 
 	err = json.Unmarshal(body, &message)
 

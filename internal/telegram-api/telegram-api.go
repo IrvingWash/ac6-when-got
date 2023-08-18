@@ -10,7 +10,7 @@ import (
 var reqEnv = newRequestsEnvironment(makeBaseUrl())
 var transp = newTransport(&reqEnv)
 
-func SendMessage(payload *TelegramSendMessagePayload) TelegramMessage {
+func SendMessage(payload *SendMessagePayload) Message {
 	return transp.sendMessage(payload)
 }
 

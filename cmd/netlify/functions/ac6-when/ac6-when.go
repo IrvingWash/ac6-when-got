@@ -11,7 +11,7 @@ import (
 )
 
 func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	var update telegramapi.TelegramUpdate
+	var update telegramapi.Update
 
 	err := json.Unmarshal([]byte(request.Body), &update)
 
@@ -24,7 +24,7 @@ func handler(request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResp
 
 	remainingTime := ac6countdown.GetRemainingTime()
 
-	telegramapi.SendMessage(&telegramapi.TelegramSendMessagePayload{
+	telegramapi.SendMessage(&telegramapi.SendMessagePayload{
 		ChatID: update.Message.Chat.ID,
 		Text:   remainingTime,
 	})
