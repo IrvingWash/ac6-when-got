@@ -14,10 +14,14 @@ func GetRemainingTime() string {
 		log.Fatal(err)
 	}
 
-	releaseDate := time.Date(2023, time.August, 25, 0, 0, 0, 0, location)
+	releaseDate := time.Date(2023, time.August, 25, 1, 0, 0, 0, location)
 	currentTime := time.Now()
 
 	delta := releaseDate.Sub(currentTime)
+
+	if delta.Abs() < 0 {
+		return fmt.Sprintf("Main system engaged combat mode")
+	}
 
 	days, hours := convertDelta(delta)
 
